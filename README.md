@@ -1,19 +1,23 @@
-# Reducing Elite-Selection Bias in Cross-Entropy Training for Tetris
+# Robust Elite Selection in Cross-Entropy Optimization
 
-C++ implementation accompanying the paper *Reducing Elite-Selection Bias in
-Cross-Entropy Training for Tetris*.
+Code accompanying the paper *Robust Elite Selection: Correcting Winner's-Curse
+Bias in Cross-Entropy Optimization*.
 
-This repository contains exactly the code needed to reproduce the paper's
-results: the linear afterstate Tetris core, the Robust-Validation
-Cross-Entropy (RV-CE) trainer, and the one-ply greedy evaluator used to score
-the selected weights.
+This repository contains the code needed to reproduce the paper's results: the
+linear afterstate Tetris core, the Robust-Validation Cross-Entropy (RV-CE)
+trainer, the one-ply greedy evaluator used to score the selected weights, and a
+small synthetic experiment demonstrating the generality of the method.
 
 - **Robust-Validation Cross-Entropy (RV-CE)** weight training separates
   training, validation, and test estimates, expands the candidate set beyond
   the current training elite, and reranks candidates by a validation mean
   penalized by a validation standard deviation (`src/ce_final/`).
-- **Greedy one-ply evaluation** ranks placements by the nine signed CBMPI
-  features under a single linear weight vector (`src/main.cpp`).
+- **Greedy one-ply evaluation** ranks placements by the nine raw
+  Dellacherie-Thiery features under a single linear weight vector
+  (`src/main.cpp`).
+- **Synthetic generality experiment** (`synthetic/`) reproduces the
+  selection-bias result on a Tetris-independent, heavy-tailed heteroscedastic
+  optimization task with a known optimum.
 
 The board, piece set, and nine Dellacherie-Thiery (DT) structural features
 follow the small `10x10` Tetris setting used in the AMPI/CBMPI literature.
